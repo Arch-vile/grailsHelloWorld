@@ -3,6 +3,6 @@ package grailshelloworld
 class HelloworldController {
 
     def index() { 
-		render "Hello World!"
+		render "Hello World from GIThub!"
 	}
 }
