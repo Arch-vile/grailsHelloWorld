@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 class HelloworldControllerTests {
 
     void testSomething() {
-       controller.index()
-	   assert response.text == 'Hello World! fail'
+       controller.testme()
+	   assert response.text == 'test string'
     }
 }

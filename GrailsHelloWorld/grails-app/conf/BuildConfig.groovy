@@ -21,6 +21,10 @@ grails.project.dependency.resolution = {
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
+	def gebVersion = "0.7.0"
+	def seleniumVersion = "2.21.0"
+	
+	
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
@@ -42,6 +46,18 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
+		
+		// https://github.com/geb/geb-example-grails/blob/master/grails-app/conf/BuildConfig.groovy
+		// http://www.gebish.org/manual/current/build-integrations.html#grails
+		test("org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion") {
+			exclude "xml-apis"
+		}
+		test("org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion")
+		test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
+
+		// You usually only need one of these, but this project uses both
+		//test "org.codehaus.geb:geb-spock:$gebVersion"
+		test "org.codehaus.geb:geb-junit4:$gebVersion"
     }
 
     plugins {
@@ -59,5 +75,9 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.2.1"
 
         compile ':cache:1.0.1'
+		
+		// http://www.gebish.org/manual/current/build-integrations.html#grails
+		// https://github.com/geb/geb-example-grails/blob/master/grails-app/conf/BuildConfig.groovy
+		test ":geb:0.9.0-RC-1"
     }
 }
